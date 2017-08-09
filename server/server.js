@@ -23,14 +23,19 @@ app.use(express.static(publicPath));
 io.on('connection',(socket)=>{
   console.log('New user connected');
 
-  socket.emit('newMessage',{
-    from:'ajith@rediff.com',
-    text:'Created the new messaege from rediff',
-    createdat:12356
-  });
+  // socket.emit('newMessage',{
+  //   from:'ajith@rediff.com',
+  //   text:'Created the new messaege from rediff',
+  //   createdat:12356
+  // });
 
 socket.on('createMessage',(arrivedmess)=>{
   console.log('Create message from user',arrivedmess);
+  io.emit('newMessage',{
+    from:arrivedmess.from,
+    text:arrivedmess.text,
+    createdat:new Date().getTime()
+  });
 });
 
 

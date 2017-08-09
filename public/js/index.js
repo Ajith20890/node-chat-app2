@@ -2,10 +2,10 @@ var socket = io();
 socket.on('connect',function(){
   console.log('connected to server');
 
-socket.emit('createMessage',{
-  from:'rakesh.gmail.com',
-  text:'all data present here'
-});
+// socket.emit('createMessage',{
+//   from:'rakesh.gmail.com',
+//   text:'all data present here'
+// });
 
 
 // socket.emit('createEmail',{
@@ -23,6 +23,6 @@ socket.on('disconnect',function(){
   console.log('disconnected from server');
 });
 
-socket.on('newEmail',function(email){
-  console.log('New Email Just Arrived : ',email);
-});
+// socket.on('newEmail',function(email){
+//   console.log('New Email Just Arrived : ',email);
+// });
