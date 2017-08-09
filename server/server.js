@@ -29,13 +29,28 @@ io.on('connection',(socket)=>{
   //   createdat:12356
   // });
 
+  socket.emit('newMessage',{
+    from:'Admin',
+    text:'Welcome to chat App'
+  });
+
+socket.broadcast.emit('newMessage',{
+  from:'Admin',
+  text:'New user joined'
+});
+
 socket.on('createMessage',(arrivedmess)=>{
   console.log('Create message from user',arrivedmess);
-  io.emit('newMessage',{
-    from:arrivedmess.from,
-    text:arrivedmess.text,
-    createdat:new Date().getTime()
-  });
+  // socket.broadcast.emit('newMessage',{
+  //   from:arrivedmess.from,
+  //   text:arrivedmess.text,
+  //   createdat:new Date().getTime()
+  // });
+  // io.emit('newMessage',{
+  //   from:arrivedmess.from,
+  //   text:arrivedmess.text,
+  //   createdat:new Date().getTime()
+  // });
 });
 
 
