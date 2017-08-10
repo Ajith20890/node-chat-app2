@@ -50,7 +50,7 @@ socket.on('createMessage',(arrivedmess,callback) =>{
 });
 
 socket.on('createLocationMessage',(coords)=>{
-  io.emit('newLocationMessage',generateLocationMessage('Admin',coords.latitude,coords.longitude))
+  io.emit('newLocationMessage',generateLocationMessage('Admin',coords.latitude,coords.longitude));
 });
 
 
