@@ -9,7 +9,7 @@ const socketIO = require('socket.io');
 var {generateMessage,generateLocationMessage} = require('./utils/message');
 
 const {isRealString} = require('./utils/validation.js');
-const {Users} = require('./utils/Users.js');
+const {Users} = require('./utils/users.js');
 
 const publicPath  = path.join(__dirname,'../public');
 
