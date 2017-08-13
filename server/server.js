@@ -51,18 +51,27 @@ callback();
 });
 
 socket.on('createMessage',(arrivedmess,callback) =>{
-  console.log('Create message from user',arrivedmess);
+  var user=users.getUser(socket.id);
+  if (user && isRealString(arrivedmess.text)) {
+    io.to(user.room).emit('newMessage',generateMessage(user.name,arrivedmess.text))
+  }
+
+  // console.log('Create message from user',arrivedmess);
   // socket.broadcast.emit('newMessage',{
   //   from:arrivedmess.from,
   //   text:arrivedmess.text,
   //   createdat:new Date().getTime()
   // });
-  io.emit('newMessage',generateMessage(arrivedmess.from,arrivedmess.text));
+  // io.emit('newMessage',generateMessage(arrivedmess.from,arrivedmess.text));
   callback();
 });
 
 socket.on('createLocationMessage',(coords)=>{
-  io.emit('newLocationMessage',generateLocationMessage('Admin',coords.latitude,coords.longitude));
+  var user=users.getUser(socket.id);
+  if (user) {
+      io.to(user.room).emit('newLocationMessage',generateLocationMessage(user.name,coords.latitude,coords.longitude));
+  }
+
 });
 
 
